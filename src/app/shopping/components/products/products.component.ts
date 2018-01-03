@@ -1,3 +1,4 @@
+import { slideIn, slideUp } from './../../../shared/animations/animation';
 import { ShoppingCart } from '../../../shared/models/cart';
 import { Product } from '../../../shared/models/product';
 import { ActivatedRoute } from '@angular/router';
@@ -11,9 +12,13 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
+  animations: [slideIn , slideUp]
 })
 export class ProductsComponent implements OnDestroy, OnInit {
+  stateMain = '*';
+  stateSide = 'down';
+  busy = true;
   products: any[] = [];
   filteredProducts: any[] = [];
   category: string;
@@ -42,8 +47,9 @@ export class ProductsComponent implements OnDestroy, OnInit {
    }
 
   async ngOnInit() {
+    this.busy = true;
     this.subcription =  (await this.cartService.getCart())
-    .subscribe(cart => this.cart = cart );
+    .subscribe(cart => {this.cart = cart; this.stateMain = 'in'; this.stateSide = 'up'; this.busy = false; });
    }
 
    ngOnDestroy() {

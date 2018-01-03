@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -11,21 +12,26 @@ import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
+import { AnimationComponent } from './components/animation/animation.component';
 
   @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     ProductCardComponent,
     ProductQuantityComponent,
+    AnimationComponent,
   ],
   exports: [
     CommonModule,
     FormsModule,
+    BrowserAnimationsModule,
     ProductCardComponent,
     ProductQuantityComponent,
+    AnimationComponent,
   ],
   providers: [
     AuthService ,
