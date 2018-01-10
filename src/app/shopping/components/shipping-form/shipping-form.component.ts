@@ -12,7 +12,11 @@ import { OrderService } from '../../../shared/services/order.service';
   styleUrls: ['./shipping-form.component.css']
 })
 export class ShippingFormComponent implements OnInit , OnDestroy {
-  shipping = {};
+  shipping: Shipping = {
+     name: null,
+    addressLine1: null,
+    addressLine2: null,
+    city: null };
   userSubscription: Subscription;
   userId: string;
   userName: string;
@@ -39,3 +43,12 @@ export class ShippingFormComponent implements OnInit , OnDestroy {
   }
 
 }
+
+
+export class Shipping {
+  name: string;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+}
+

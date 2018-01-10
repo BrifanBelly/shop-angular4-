@@ -11,7 +11,12 @@ import 'rxjs/add/operator/take';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  product = {};
+  product = {
+    title: null,
+    price: null,
+    category: null,
+    imageUrl: null
+  };
   id: string;
   constructor(private cat: CategoryService,
      private productService: ProductService ,
@@ -20,7 +25,7 @@ export class ProductFormComponent implements OnInit {
      this.categories$ = cat.getCategories();
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.productService.getProd(this.id).take(1).subscribe(x => this.product = x);
+      this.productService.getProd(this.id).take(1).subscribe((x: Product) => this.product = x);
     }
    }
 
@@ -41,4 +46,11 @@ export class ProductFormComponent implements OnInit {
       this.router.navigate(['/admin/products']);
   }
 
+}
+
+export class Product {
+  title: string;
+  price: number;
+  category: string;
+  imageUrl: string;
 }
